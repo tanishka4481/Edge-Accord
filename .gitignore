@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.venv/
+.env
+.pio/
+.build/
+build/
+dist/
+*.egg-info/
+accord_log.jsonl
+host/*.jsonl
+firmware/.pio/
+firmware/.cache/
+firmware/src/model_data.h
