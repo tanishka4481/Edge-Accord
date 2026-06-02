@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgeaccord"
+version = "0.1.0"
+description = "Deterministic hardware-constraint negotiation for ESP32 keyword spotting"
+requires-python = ">=3.11"
+readme = "README.md"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+	"integration: marks tests that exercise the full negotiation path",
+]
