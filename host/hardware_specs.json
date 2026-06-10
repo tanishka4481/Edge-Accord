@@ -1,0 +1,12 @@
+{
+  "board": "esp32dev",
+  "chip": "ESP32-WROOM-32",
+  "sram_total_bytes": 532480,
+  "usable_ram_bytes": 307200,
+  "flash_partition_bytes": 1310720,
+  "tensor_arena_bytes": 65536,
+  "i2s_sample_rate_hz": 16000,
+  "mfcc_time_steps": 40,
+  "mfcc_bins": 10,
+  "classes": ["yes", "no", "stop", "go", "unknown", "silence"]
+}
