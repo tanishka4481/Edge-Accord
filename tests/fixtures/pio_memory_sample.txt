@@ -1,0 +1,3 @@
+Building .pio\build\esp32dev\firmware.elf
+RAM:   [===       ]  28.4% (used 92928 bytes from 327680 bytes)
+Flash: [=====     ]  63.9% (used 838656 bytes from 1310720 bytes)
