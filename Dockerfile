@@ -20,14 +20,11 @@ WORKDIR /workspace
 COPY firmware/platformio.ini /workspace/firmware/
 RUN pio pkg install --project-dir /workspace/firmware
 
-# Stage 2: Full Runner Environment (adds Node.js, @wokwi/cli, and Python deps)
+# Stage 2: Full Runner Environment (adds Wokwi CLI & Python deps)
 FROM build-env AS runner
 
-# Install Node.js & npm (for @wokwi/cli)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y --no-install-recommends nodejs \
-    && npm install -g @wokwi/cli \
-    && rm -rf /var/lib/apt/lists/*
+# Install Wokwi CLI via official installer script
+RUN curl -L https://wokwi.com/ci/install.sh | sh -s -- -b /usr/local/bin
 
 # Install Python requirements
 COPY requirements.txt /workspace/
