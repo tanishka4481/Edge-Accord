@@ -23,8 +23,8 @@ RUN pio pkg install --project-dir /workspace/firmware
 # Stage 2: Full Runner Environment (adds Wokwi CLI & Python deps)
 FROM build-env AS runner
 
-# Install Wokwi CLI directly from official GitHub releases
-RUN curl -L https://github.com/wokwi/wokwi-cli/releases/latest/download/wokwi-cli-linux-x64.tar.gz | tar -xz -C /usr/local/bin \
+# Download wokwi-cli precompiled Linux binary directly (raw executable file)
+RUN curl -L -o /usr/local/bin/wokwi-cli https://github.com/wokwi/wokwi-cli/releases/latest/download/wokwi-cli-linux-x64 \
     && chmod +x /usr/local/bin/wokwi-cli
 
 # Install Python requirements
