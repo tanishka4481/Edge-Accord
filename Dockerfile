@@ -23,7 +23,7 @@ RUN pio pkg install --project-dir /workspace/firmware
 # Stage 2: Full Runner Environment (adds Wokwi CLI & Python deps)
 FROM build-env AS runner
 
-# Download wokwi-cli precompiled Linux binary directly (raw executable file)
+# Download wokwi-cli precompiled Linux binary directly
 RUN curl -L -o /usr/local/bin/wokwi-cli https://github.com/wokwi/wokwi-cli/releases/latest/download/wokwi-cli-linux-x64 \
     && chmod +x /usr/local/bin/wokwi-cli
 
@@ -33,6 +33,9 @@ RUN pip install --no-cache-dir -r /workspace/requirements.txt
 
 # Copy all project files into the workspace
 COPY . /workspace/
+
+# Set working directory to firmware where platformio.ini lives
+WORKDIR /workspace/firmware
 
 # Default behavior: run bash
 CMD ["bash"]
