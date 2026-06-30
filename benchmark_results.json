@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-08-26T02:00:17.019724",
+  "latency_ms": {
+    "avg": 0.05,
+    "min": 0.04,
+    "max": 0.21,
+    "samples": 305
+  },
+  "static_memory_profile": {
+    "tensor_arena_bytes": 81920,
+    "bss_data_bytes": 27188,
+    "total_static_ram_bytes": 109108,
+    "flash_used_bytes": 540317
+  },
+  "accuracy_evaluation": {
+    "total_samples": 305,
+    "correct_predictions": 247,
+    "accuracy": 0.8098,
+    "predictions_per_class": {
+      "yes": {
+        "total": 50,
+        "correct": 42
+      },
+      "no": {
+        "total": 50,
+        "correct": 28
+      },
+      "stop": {
+        "total": 50,
+        "correct": 41
+      },
+      "go": {
+        "total": 50,
+        "correct": 36
+      },
+      "unknown": {
+        "total": 55,
+        "correct": 52
+      },
+      "silence": {
+        "total": 50,
+        "correct": 48
+      }
+    }
+  }
+}
