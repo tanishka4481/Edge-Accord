@@ -21,7 +21,7 @@ jobs:
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
+            -w /workspace/firmware \
             edge-accord-ci \
             pio run
 
@@ -30,14 +30,14 @@ jobs:
           WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_CLI_TOKEN }}
         run: |
           if [ -z "$WOKWI_CLI_TOKEN" ]; then
-            echo "Warning: WOKWI_CLI_TOKEN is not set. Skipping simulation check."
+            echo "Warning: WOKWI_CLI_TOKEN is not set. Skipping Wokwi execution."
           else
             docker run --rm \
               -v ${{ github.workspace }}:/workspace \
-              -w /workspace \
+              -w /workspace/firmware \
               -e WOKWI_CLI_TOKEN \
               edge-accord-ci \
-              wokwi-cli firmware --timeout 10000 --expect-text "Best class:"
+              wokwi-cli --timeout 10000 --expect-text "Best class:"
           fi
 
       - name: Run Integration Tests inside Docker
