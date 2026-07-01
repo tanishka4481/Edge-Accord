@@ -1,0 +1,13 @@
+.git
+.github
+.pio
+.pytest_cache
+build/
+venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+accord_log.jsonl
+benchmark_results.json
