@@ -1,0 +1,49 @@
+name: Hardware-in-the-Loop CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  hil_ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t edge-accord-ci .
+
+      - name: Build Firmware inside Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            edge-accord-ci \
+            pio run
+
+      - name: Simulate with Wokwi inside Docker
+        env:
+          WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_CLI_TOKEN }}
+        run: |
+          if [ -z "$WOKWI_CLI_TOKEN" ]; then
+            echo "Warning: WOKWI_CLI_TOKEN is not set. Skipping simulation check."
+          else
+            docker run --rm \
+              -v ${{ github.workspace }}:/workspace \
+              -w /workspace \
+              -e WOKWI_CLI_TOKEN \
+              edge-accord-ci \
+              wokwi-cli firmware --timeout 10000 --expect-text "Best class:"
+          fi
+
+      - name: Run Integration Tests inside Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            edge-accord-ci \
+            pytest tests/
